@@ -6,16 +6,21 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File",
+            "name": "CompilerTools",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "tools.CompilerTools"
         },
         {
             "type": "java",
-            "name": "CompilerTools",
+            "name": "Lexer",
             "request": "launch",
-            "mainClass": "tools.CompilerTools",
-            "projectName": "1-lexer_4248827a"
+            "mainClass": "lexer.Lexer"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
         }
     ]
 }
