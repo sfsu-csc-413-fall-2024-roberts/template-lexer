@@ -21,3 +21,7 @@ clean:
 tools: clean
 	@javac -d $(COMPILE_DIR) -cp $(SRC_DIR):. src/tools/CompilerTools.java
 	@java -cp $(COMPILE_DIR):. tools.CompilerTools
+
+lexer: tools
+	@javac -d $(COMPILE_DIR) -cp $(SRC_DIR):. src/lexer/Lexer.java
+	@java -cp $(COMPILE_DIR):. lexer.Lexer
