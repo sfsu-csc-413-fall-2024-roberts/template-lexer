@@ -26,4 +26,3 @@ And         &
 Multiply    *
 Divide      /
 Comment     //
-Greater >
