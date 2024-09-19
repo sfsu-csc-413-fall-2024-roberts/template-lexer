@@ -20,7 +20,7 @@ clean:
 
 tools: clean
 	@javac -d $(COMPILE_DIR) -cp $(SRC_DIR):. src/tools/CompilerTools.java
-	@java -cp $(COMPILE_DIR):. tools.CompilerTools
+	@java -cp $(COMPILE_DIR):. tools.CompilerTools src/tools/config/tokens.txt
 
 lexer: tools
 	@javac -d $(COMPILE_DIR) -cp $(SRC_DIR):. src/lexer/Lexer.java
