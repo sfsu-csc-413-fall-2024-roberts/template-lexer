@@ -25,7 +25,7 @@ public class TokenKindGenerator extends FileGeneratorTool {
 
     int index = 0;
     while (this.hasNext()) {
-      String[] lineParts = this.next().split("\s+");
+      String[] lineParts = this.next().split("\\s+");
 
       if (index % 5 == 0) {
         buffer.append(System.lineSeparator());
