@@ -129,9 +129,9 @@ public class LexerAssignmentTest {
   }
 
   private static Stream<Arguments> provideValidOctals() {
-    return Stream.of(Arguments.of(" @0 ", TokenKind.OctalLiteral, 1, 2),
-        Arguments.of(" @1234567 ", TokenKind.OctalLiteral, 1, 8),
-        Arguments.of(" @777 ", TokenKind.OctalLiteral, 1, 4));
+    return Stream.of(Arguments.of(" @0 ", TokenKind.OctalLit, 1, 2),
+        Arguments.of(" @1234567 ", TokenKind.OctalLit, 1, 8),
+        Arguments.of(" @777 ", TokenKind.OctalLit, 1, 4));
   }
 
   private static Stream<Arguments> provideInvalidOctals() {
@@ -140,10 +140,10 @@ public class LexerAssignmentTest {
   }
 
   private static Stream<Arguments> provideValidStrings() {
-    return Stream.of(Arguments.of(" 'im valid' ", TokenKind.StringLiteral, 1, 10, 0),
-        Arguments.of(" 'im\nvalid' ", TokenKind.StringLiteral, 1, 5, 0),
-        Arguments.of(" 'im\nvalid\n' ", TokenKind.StringLiteral, 1, 0, 0),
-        Arguments.of(" \n\n'im\nvalid\n' ", TokenKind.StringLiteral, 1, 0, 2));
+    return Stream.of(Arguments.of(" 'im valid' ", TokenKind.StringLit, 1, 10, 0),
+        Arguments.of(" 'im\nvalid' ", TokenKind.StringLit, 1, 5, 0),
+        Arguments.of(" 'im\nvalid\n' ", TokenKind.StringLit, 1, 0, 0),
+        Arguments.of(" \n\n'im\nvalid\n' ", TokenKind.StringLit, 1, 0, 2));
   }
 
   private static Stream<Arguments> provideInvalidStrings() {
