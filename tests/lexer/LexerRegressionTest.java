@@ -2,7 +2,6 @@ package tests.lexer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ public class LexerRegressionTest {
 
   @Test
   public void testEndOfFile() throws Exception {
-    IReader testReader = new TestReader(List.of("   ", " "));
+    IReader testReader = new TestReader("   \n ");
 
     try (Lexer lexer = new Lexer(testReader);) {
       Token token = lexer.nextToken();
@@ -33,7 +32,7 @@ public class LexerRegressionTest {
 
   @Test
   public void testWhitespaceIsIgnored() throws Exception {
-    IReader testReader = new TestReader(List.of("\r", "\t   "));
+    IReader testReader = new TestReader("\r\n\t   ");
 
     try (Lexer lexer = new Lexer(testReader);) {
       Token token = lexer.nextToken();
@@ -48,7 +47,7 @@ public class LexerRegressionTest {
   @MethodSource("provideBuiltInKeywords")
   public void testBuiltInKeywords(String source, TokenKind kind, int expectedStart, int expectedEnd)
       throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -62,7 +61,7 @@ public class LexerRegressionTest {
   @MethodSource("provideBuiltInOperators")
   public void testBuiltInOperators(String source, TokenKind kind, int expectedStart,
       int expectedEnd) throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -76,7 +75,7 @@ public class LexerRegressionTest {
   @MethodSource("provideBuiltInSeparators")
   public void testBuiltInSeparators(String source, TokenKind kind, int expectedStart,
       int expectedEnd) throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -89,7 +88,7 @@ public class LexerRegressionTest {
   @Test
   public void testComments() throws Exception {
     // Comments are a special case since the token gets "ignored" by the lexer
-    try (Lexer lexer = new Lexer(new TestReader(List.of(" // ")))) {
+    try (Lexer lexer = new Lexer(new TestReader(" // "))) {
       Token token = lexer.nextToken();
       // We expect EOF in this case because we only have a comment, which should
       // be ignored by the lexer. Lexer would normally reset start position
@@ -107,7 +106,7 @@ public class LexerRegressionTest {
   @MethodSource("provideIdentifierExamples")
   public void testIdentifiers(String source, TokenKind kind, int expectedStart, int expectedEnd)
       throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -121,7 +120,7 @@ public class LexerRegressionTest {
   @MethodSource("provideIntegerExamples")
   public void testIntegers(String source, TokenKind kind, int expectedStart, int expectedEnd)
       throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());

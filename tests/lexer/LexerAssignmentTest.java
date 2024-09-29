@@ -23,7 +23,7 @@ public class LexerAssignmentTest {
   @MethodSource("provideAssignmentOperators")
   public void testAssignmentOperators(String source, TokenKind kind, int expectedStart,
       int expectedEnd) throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -37,7 +37,7 @@ public class LexerAssignmentTest {
   @MethodSource("provideAssignmentKeywords")
   public void testAssignmentKeywords(String source, TokenKind kind, int expectedStart,
       int expectedEnd) throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -51,7 +51,7 @@ public class LexerAssignmentTest {
   @MethodSource("provideValidOctals")
   public void testValidOctals(String source, TokenKind kind, int expectedStart, int expectedEnd)
       throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -65,7 +65,7 @@ public class LexerAssignmentTest {
   @MethodSource("provideInvalidOctals")
   public void testInvalidOctals(String source, int expectedLine, int expectedColumn)
       throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
 
       Exception exception = assertThrows(LexicalException.class, () -> {
         lexer.nextToken();
@@ -84,7 +84,7 @@ public class LexerAssignmentTest {
   @MethodSource("provideValidStrings")
   public void testValidStrings(String source, TokenKind kind, int expectedStart, int expectedEnd,
       int expectedLine) throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
       Token token = lexer.nextToken();
 
       assertEquals(source.trim(), token.getLexeme());
@@ -99,7 +99,7 @@ public class LexerAssignmentTest {
   @MethodSource("provideInvalidStrings")
   public void testInvalidStrings(String source, int expectedLine, int expectedColumn)
       throws Exception {
-    try (Lexer lexer = new Lexer(new TestReader(List.of(source)))) {
+    try (Lexer lexer = new Lexer(new TestReader(source))) {
 
       Exception exception = assertThrows(LexicalException.class, () -> {
         lexer.nextToken();

@@ -1,8 +1,5 @@
 package tests.helpers;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import lexer.readers.IReader;
 
 public class TestReader implements IReader {
@@ -10,15 +7,12 @@ public class TestReader implements IReader {
   private int column;
   private int index;
   private String source;
-  private char lastRead;
 
-  public TestReader(List<String> sourceLines) {
-    this.source = sourceLines.stream().collect(Collectors.joining("\n"));
-
-    this.lineNumber = -1;
-    this.column = -1;
-    this.index = -1;
-    this.lastRead = '\n';
+  public TestReader(String source) {
+    this.source = source;
+    this.lineNumber = 0;
+    this.column = 0;
+    this.index = 0;
   }
 
   @Override
@@ -28,19 +22,19 @@ public class TestReader implements IReader {
 
   @Override
   public char read() {
-    if (this.lastRead == '\n') {
-      this.column = -1;
-      this.lineNumber++;
-    }
-    this.column++;
-    this.index++;
-
-    char c = '\0';
 
     try {
+      if (this.source.charAt(index) == '\n') {
+        this.column = -1;
+        this.lineNumber++;
+      }
+
+      this.column++;
+      this.index++;
+
       return this.source.charAt(this.index);
     } catch (IndexOutOfBoundsException exception) {
-      return c;
+      return '\0';
     }
   }
 
