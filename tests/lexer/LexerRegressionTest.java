@@ -20,7 +20,7 @@ public class LexerRegressionTest {
 
   @Test
   public void testEndOfFile() throws Exception {
-    IReader testReader = new TestReader(List.of("   \n", " "));
+    IReader testReader = new TestReader(List.of("   ", " "));
 
     try (Lexer lexer = new Lexer(testReader);) {
       Token token = lexer.nextToken();
@@ -33,7 +33,7 @@ public class LexerRegressionTest {
 
   @Test
   public void testWhitespaceIsIgnored() throws Exception {
-    IReader testReader = new TestReader(List.of("\r\n", "\t   "));
+    IReader testReader = new TestReader(List.of("\r", "\t   "));
 
     try (Lexer lexer = new Lexer(testReader);) {
       Token token = lexer.nextToken();
